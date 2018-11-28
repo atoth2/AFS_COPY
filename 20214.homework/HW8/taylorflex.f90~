@@ -1,0 +1,20 @@
+module taylor                   ! beginning of the function
+contains
+real function tay(x,m)
+
+use myfunction
+
+implicit none                     ! force all variables to be declare
+integer, intent(in) :: m
+real, intent(in) :: x 
+integer :: i
+real :: tay
+
+tay = 0
+
+do i = 1,m
+      tay = tay + ((-2.*x)**i)/f(i)
+end do                           ! end the loop
+
+end function tay
+end module taylor               ! end of program

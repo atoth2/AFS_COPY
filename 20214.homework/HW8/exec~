@@ -1,0 +1,10 @@
+ifort -c taylorflex.f90
+ifort -c main.f90
+ifort myfunction.o taylorflex.o taylor.o
+a.out
+
+gfortran -c myfunction.f90
+gfortran -c taylorflex.f90
+gfortran -c main.f90
+gfortran myfunction.o taylorflex.o taylor.o
+a.out

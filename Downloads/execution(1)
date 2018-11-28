@@ -1,0 +1,4 @@
+gfortran -c taylor8.f90
+gfortran -c main.f90
+gfortran main.o taylor8.o
+a.out

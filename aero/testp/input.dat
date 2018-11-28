@@ -1,0 +1,16 @@
+Position of SC/Pitching Axis (Distance to Leading Edge):
+0.6
+Stiffness of Heaving Spring and Pitching Spring
+1,0.125
+Total Simulation Time:
+30.0
+Time Step:
+5e-4
+tstart for Matlab output:
+0.0
+tend for Matlab output:
+30.0
+tdt for Matlab output:
+0.5
+
+

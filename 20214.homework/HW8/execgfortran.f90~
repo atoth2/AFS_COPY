@@ -1,0 +1,5 @@
+ifort -c taylorflex.f90
+ifort -c main.f90
+ifort myfunction.o taylorflex.o taylor.o
+a.out
+

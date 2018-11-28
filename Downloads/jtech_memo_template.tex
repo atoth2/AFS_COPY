@@ -1,0 +1,330 @@
+\documentclass[12pt, letterpaper]{article}
+%
+% File: jtech_memo_template.tex
+%
+% Written in MS Word by Dr. David Go, Fall 2011 for AME20213
+% Translated to LaTex by John Ott
+%
+% Contact John Ott for any packages you don't have install
+% on your latex system.
+%
+% when printing, "print actual size", "not fit to page"
+%
+%%%%%%%%% EXACT 1in MARGINS %%%%%%%
+%
+\setlength\voffset{0pt}%
+\setlength\headsep{25pt}% 25pt
+\setlength\headheight{12pt}% 12pt
+\setlength\topmargin{0pt}%
+\addtolength\topmargin{-\headheight}%
+\addtolength\topmargin{-\headsep}%
+
+\setlength\hoffset{0pt}
+\setlength\marginparwidth{0pt}
+\setlength\oddsidemargin{0pt}
+
+\setlength\textwidth{\paperwidth}
+\addtolength\textwidth{-2in}
+\setlength\textheight{\paperheight}
+\addtolength\textheight{-2in}
+
+\setlength{\parindent}{0pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 4pt}
+
+% remove double spacing between bibitem entries
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 0.3ex}
+}
+
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage[justification=centering]{caption}
+\usepackage{setspace}% for double spacing
+\usepackage{mathptmx}% for adobe roman font
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{booktabs}% to deal with hline spacing issues in tables
+
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\z}[1]{\text{#1}} % use for times roman font in equations
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\makeatletter
+\renewcommand\paragraph{% start new line after key
+    \@startsection{paragraph}{4}{\z@}%
+    {-3.25ex\@plus -1ex \@minus -.2ex}%
+    {0.01em}%
+    {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\noindent {\bf AME 20213: Measurements and Data Analysis} \\
+{\bf Technical Memo} \\
+\\{\bf Date Submitted: }
+\\{\bf Dates Performed: } \textit{day/time} \\
+\\{\bf To: }
+\\{\bf From: } \\
+\\{\bf Subject: } Lab Exercise 1 - Measurement Systems/Calibration
+
+\doublespacing
+\paragraph{Summary:} In this work, two types of studies were conducted. The
+first was the calibration of a large-scale strain gage and the second was the
+use of cantilever beam to measure the mass of a penny and an unknown material
+(a cylinder), which was then identified by its density. For the calibration
+study, the large-scale strain gage showed a linear relationship with a high
+coefficient of determination ($r^2$ = 0.999) and a small relative standard
+error that was far less than 1\% at 95\% confidence. It was also determined
+that the cantilever beam apparatus in full bridge mode was more sensitive with
+narrower confidence intervals than in the quarter bridge configuration. The
+measured mass of the penny for the two configurations was 4.08 g and 4.10 g.
+respectively, both greater than the published value of 2.500 g by more than
+70\% This was attributed to dirt and other contaminants on the pennies skewing
+the data. The mass for the cylinder was measured to be 305.8 g (full bridge)
+and the volume was 35.941 $\z{\z{cm}}^3$, such that the density was 8.501
+$\z{g/cm}^3$ in the full bridge configuration, and 288.7 g and 8.058
+$\z{g/cm}^3$ in the quarter bridge configuration. In comparison with published
+data of common materials, the unknown material was identified to most likely be
+brass or bronze.
+
+\paragraph{Findings:}
+In this work, two studies were conducted: 1) a `macro'
+strain gage was built and calibrated, and 2) strain gages in two different
+Wheatstone bridge configurations (full and quarter) on a cantilever beam were
+used to determine the mass of both a single penny and the density of an
+unknown object (a cylinder). For both studies, calibration was required and
+linear regression analysis was implemented utilizing the least squares
+approach, and quantitative conclusions were drawn based on the data. \\
+
+\textit{Study 1:} The large-scale strain gage was constructed from a
+stretching apparatus, dial, gauge, stainless steel wire, and a
+multimeter. The wire was stretched known amounts and the resistance was
+measured across the entire length of the wire. The resulting measured
+resistance was related to the strain, defined as $\epsilon = \Delta L/L$
+where $L$ is the initial wire length and $\Delta L$ is the known change
+in wire length, and a calibration curve was fit to the resulting
+resistance data using the unweighted least squares method. Recalling
+from \cite{ame} that for linearly related  properties the
+calibration curve will take the following form
+
+\begin{equation}
+R = a_0 + a_1\epsilon,
+\end{equation}
+
+the unknown coefficients can be determined by
+
+\begin{eqnarray}
+   a _1 &=& \frac{\overline{\epsilon R}
+     -(\overline{\epsilon})(\overline{R})}{\overline{(\epsilon^2)}
+     -(\overline{\epsilon})^2} \\
+     a_0 &=& \overline{R} - a_1 \overline{\epsilon},
+\end{eqnarray}
+
+where the overbar indicates a mean quantity. Details of this calculation are
+included in Appendix A. The resulting data, calibration curve, and confidence
+(precision) interval are plotted in Fig. 1, where
+
+\begin{equation}
+R = 211.96 + 515.64 \epsilon  \qquad (\Omega),
+\end{equation}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=3in]{pic1.eps}
+\caption{Calibration curve relating the resistance $R$ \\ to the known strain
+              $\epsilon$ for the 'macro' strain gage.}
+\label{pic1.fig}
+\end{center}
+\end{figure}
+
+Several remarks can be made about the sensitivity of the calibration curve,
+quality of the curve fit, and the range to which it applies. Table 1 contains
+useful statistical parameters pertaining to the data. The slope of the
+regression line $K$ is referred to as the sensitivity of the calibration curve
+and takes of a value of $K$ = 515.65 $\Omega$. The slope is positive but of
+$\mathcal{O}(10^0)$ suggesting relatively low sensitivity. The standard error
+$t_{10,95\%} S_{yx}$ was $5.7928 \times 10^{-2}$ at 95\%  confidence where the
+Student's $t$ value was $t_{10,95\%} = 2.228$ \cite{dunn}. Given that the measure
+resistance is $\sim$ 200 $\Omega$, the relative standard error is less than
+$2.6811 \times 10^{-2}$  \%, suggesting that the curve fit was good.  Similarly, the
+coefficient of determination $r^2$ is asymptotically close to 1 implying a
+near perfect correlation, giving high confidence that the relationship is in
+fact linear.  Because the strain gage was only calibrated across a strain of
+$\epsilon = 0.3 - 0.4$, this is the suitable range of use for this system. Due
+to the relative sparseness of data below this range and the prospect of
+possible mechanical failure above it, this system is not recommended for use
+outside this range without both acquiring more data or mechanically fortifying
+the system. Details of the calculations used to obtain the values in Table 1
+can be found in Appendix A.
+
+\begin{table}[h!]
+\centering
+   \caption{Curve fit parameters for the large-scale strain gage. \\
+      The degrees of freedom was $\nu =7$ and $R_{ci}$ represents calculated \\
+   values from Eq. (3) while $R_i$ represent raw resistance data.}
+   \begin{tabular}{ c c c c } \toprule
+      Parameter & Name & Basic Equation & Value \\ \midrule
+      $K$ & sensitivity & $\dfrac{dR}{d\epsilon}$ &  515.65 \\ \midrule
+      $S_{yx}$ & standard error & $\sqrt{\dfrac{\sum_{i=1}^N (R_{ci} - R_i)^2}{\nu}}$ &
+      $5.7928 \times 10^{-2} \quad {\Omega}$  \\  \midrule
+      $r^2$ & coefficient of determination & $1 - \dfrac{\sum_{i=1}^N (R_{ci}
+   - R_i)^2}{\sum_{i=1}^N(R_i - \overline{R})^2}$ & 0.99964 \\ \bottomrule
+\end{tabular}
+\label{table1}
+\end{table}
+
+\mbox{} \\ % add blank line
+\textit{Study 2:} For the second study, a cantilever beam was outfitted
+with four strain gages. In a Wheatstone bridge configuration. All four
+strain gages could be utilized simultaneously in a full bridge
+configuration or three of them could be replaced by fixed resistors
+($R_{fix}  = 120 \Omega$) in a quarter bridge configuration. Weight
+could be applied to the end of the cantilever beam and the resulting
+deflection sensed by the strain gage measurement system, thus it could
+be used as a scale. A calibration curve was generated for each
+configuration of the cantilever beam apparatus relating the measured
+mass and output voltage from the measurement system.  For a known mass
+$m$, voltage $V_{out}$out was  measured  over  the  Wheatstone  bridge
+circuit  and  the corresponding calibration curves along with precision
+intervals are shown in Fig. 2. The calibration curve for the full bridge
+configuration yielded a smaller precision interval indicating that the
+full bridge produced more consistently linear data and a higher quality
+curve fit.  It is worth comparing the slope of the calibration curves
+for each configuration.  For the full bridge $K_{FB} = 0.012613$ while
+for the quarter bridge $K_{QB} = 0.012558$, which are less than 1\%
+different indicating that the full bridge configuration was negligibly
+more sensitive.
+
+\begin{figure}[!ht]
+   \begin{center}
+   \subfloat[ \label{subfig-1:dummy}]{%
+      \includegraphics[width=0.45\textwidth]{pic2a.eps}
+    }
+    \hfill
+    \subfloat[ \label{subfig-2:dummy}]{%
+      \includegraphics[width=0.45\textwidth]{pic2b.eps}
+    }
+   \caption{Calibration curve relating the output voltage Vout to the known mass
+       $m$ for (a) the full bridge configuration and (b) the quarter bridge configuration.}
+    \label{fig:dummy}
+ \end{center}
+\end{figure}
+
+\mbox{} \\
+This apparatus was used to measure the mass of a single penny as well as
+several discrete quantities of pennies. The mass of a single penny is 2.500 g
+according to the United States mint \cite{us}, and the measured results were
+compared graphically to the predicted mass $m = 2.5n$ (g) in Figure 3, where
+$n$ is the number of pennies. A simple qualitative assessment of the data
+shows a decline in accuracy as the measured number of pennies increases as
+both configurations over predict the theoretical mass. This is can likely be
+attributed at least in part to the aggregate amount of dirt and other
+contaminants increasing as the number of pennies increases. For the two
+measurement configurations there is a slight discrepancy in the measured value
+of single penny; however, it would seem that as the mass increases the two
+techniques yield results that steadily approach each other. Table 2 lists the
+masses measured for the two configurations and the percent difference relative
+to the theoretical value. For this measurement the quarter bridge method
+yielded data closer to the published value, but this is possibly due to a less
+sensitive calibration curve (as shown in Fig. 2b) as opposed to an inherently
+more accurate system.
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=3.25in]{pic3.eps}
+\caption{Measured mass $m$ as a function of the number of pennies $n$
+   for the full and quarter bridge configuration along with the
+predicted value from [3].}
+\label{pic3.fig}
+\end{center}
+\end{figure}
+
+\begin{table}
+\centering
+\caption{A comparison of the measured and predicted values \\  for the two measurement configurations.}
+\begin{tabular}{c c c c c c} \toprule
+number      & predicted mass & measured mass & \% difference & measured mass  &\% difference \\
+of pennies  & (g)                   &  full bridge (g)   &                       & quarter bridge (g)  &   \\ \midrule
+1 & 2.500 & 6.6252 & 265.0 & 3.751 & 150.0 \\ \midrule
+10 & 25.00 & 29.62 & 11.85 & 26.84 & 10.74 \\ \midrule
+25 & 62.50 & 65.30 & 4.180 & 64.27 & 4.110 \\ \midrule
+50 & 125.0 & 131.1 & 2.100 & 129.6 & 2.070 \\ \bottomrule
+\end{tabular}
+\label{table 2}
+
+\end{table}
+
+The cantilever beam apparatus was also used to measure the mass of an object
+of unknown material, in this case a cylinder. The volume $V$ of the material
+was determined based on measurements of the length $L$ and diameter $d$ using
+calipers and the relationship $V = (1/4)\pi d^2 L (\z{cm}^3)$. The ensuing
+density $\rho$ was than calculated as
+
+\begin{equation}
+   \rho = m/V \qquad (\z{g/cm}^3).
+\end{equation}
+
+Table 3 outlines the measured values using the full and quarter bridge
+configurations. Similar to the penny measurements, the quarter bridge
+configuration measured a mass lower than the full bridge, resulting in an
+approximately 5\% difference in calculated density.   Based on these
+measured values, there are a wide range of candidate materials based on a
+density between 8.0 - 8.5 $\z{g/cm}^3$  for the cylinder according to
+\cite{thermtest}, including brass alloys, bronze alloys, cadmium, cobalt
+alloys, and stainless steels.
+Based on the color and likely cost, many of these can be disregarded and a
+reasonable judgment is that the cylinder is made from a brass or bronze alloy,
+It is important to note that this is just speculation, and without knowing
+more material properties a definitive material classification is not possible.
+Again, detailed calculations are included in Appendix A.
+
+\begin{table}
+\begin{center}
+   \caption{The calculated density for the cylinder of unknown material.}
+\begin{tabular}{ccccc} \toprule
+   volume $(\z{cm}^3)$ & $m_{\z{FB}}$ (g) & $\rho_{\z{FB}} (\z{g/cm}^3)$
+   & $m_{QB}$ (\z{g}) & $\rho_{\z{QB}} (\z{g/cm}^3)$ \\ \midrule
+35.940 & 305.8 & 8.501 & 288.7 & 8.058 \\ \bottomrule
+\end{tabular}
+\label{table3}
+\end{center}
+\end{table}
+
+\paragraph{Conclusions:}
+A large-scale strain gage was constructed and
+calibrated. While the error associated with this system is minimal, its range
+of operation is limited. Strain gages in Wheatstone bridge configuration fixed
+to a cantilever beam created a mass measurement system that was calibrated and
+utilized to measure the mass of a penny and an unidentified material. The
+system generally over predicted the theoretical mass of the penny. Finally
+based on mass and volume measurements, the density of a cylinder of unknown
+material was measured and identified to likely be brass or bronze.
+
+% The following can be deleted and manually type in your references
+
+\paragraph{References:}
+\begingroup
+   \def\section*#1{}% remove References from thebibliography environment
+\raggedright
+\singlespacing
+\begin{thebibliography}{}
+   \bibitem{ame} AME20213, Fall 2011, "Measurement  Systems/Calibration",
+       Lab Exercise \#1 Week A, University of Notre Dame, Notre Dame, IN.
+   \bibitem{dunn}  Dunn, P. F., 2009, Measurement and Data Analysis,
+       University of Notre Dame, Notre Dame, IN, Chap. 6.9.
+   \bibitem{us} The United States Mint, 2011, "Coin Specifications",
+        http://www.usmint.gov/about\_the\_mint/?action=coin\_specifications.
+    \bibitem{thermtest} ThermTest Inc., 2011, "Material Property Search Results",
+        http://www.thermtest.com/material-property-search/.
+\end{thebibliography}
+\endgroup
+
+\end{document}
+

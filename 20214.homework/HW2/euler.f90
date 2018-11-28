@@ -1,0 +1,24 @@
+program euler                     ! beginning of the program
+                                  ! approximate
+                                  !     dy/dt = lambda*y; y(0)=yo
+                                  ! with Euler's method
+                                  ! exact solution is
+                                  !     y=yo*exp(lambda*t)
+implicit none                     ! force all variables to be declared
+integer :: n              
+real, parameter :: tstop=1., yo = 1., lambda = -1., dt=0.1
+real :: y,ynew,t
+t = 0.                            ! set initial time
+y = yo                            ! set initial value of y
+n=0                               ! set initial value of n
+print*,t,y,yo*exp(lambda*t)       ! print initial values
+do while (t<tstop)                ! main loop for calculation
+   ynew = y+lambda*dt*y           ! approximate new solution 
+   n = n+1                        ! update the counter
+   t = dt*n                       ! update time
+   y = ynew                       ! update y
+   print*,t,y,yo*exp(lambda*t)    ! print results to screen
+   enddo                          ! end the loop
+print*,'error ',y-yo*exp(lambda*t)! print the final error
+end program euler                 ! end of program
+

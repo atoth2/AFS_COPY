@@ -1,0 +1,27 @@
+program euler_newton              ! beginning of the program
+
+implicit none                     ! force all variables to be declare
+integer :: n             
+real, parameter :: tstop=30., y0 = 1.,v0 = 0., m = 1., k = 9.
+real, parameter :: dt = .02, f0 =10., b = 1., v1 = 20.
+real, dimension(1500) :: v,y,t
+real :: ynew,vnew
+open(unit=20,file = 'output6.out')
+n = 1
+t(n) = 0.                            ! set initial time
+y(n) = y0                            ! set initial value of y
+v(n) = v0                            ! set initial value of v
+do while (t(n)<tstop)                ! main loop for calculation
+   vnew = (-k/m*y(n) - b/m*v(n) + f0/m*sin(v1*t(n)))*dt + v(n)  ! approximate new velocity
+   ynew = v(n)*dt + y(n)                ! approximate new position 
+   n = n+1                        ! update the counter
+   t(n) = dt*n                       ! update time
+   y(n) = ynew                       ! update y
+   v(n) = vnew                       ! update v
+   write(20,*)y(n),v(n),t(n)
+   enddo                          ! end the loop
+print*, y(n),v(n),t(n)
+
+end program euler_newton      ! end of program
+
+
